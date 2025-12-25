@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "id": "u1",
+      "username": "admin",
+      "password": "123456",
+      "displayName": "管理员"
+    }
+  ],
+  "samples": [
+    {
+      "id": "JVqQ6Z2luu",
+      "name": "1111",
+      "category": "1111",
+      "description": "22222",
+      "lon": 116.411457,
+      "lat": 39.900916,
+      "createdAt": 1766632052274
+    }
+  ],
+  "customTiles": []
+}

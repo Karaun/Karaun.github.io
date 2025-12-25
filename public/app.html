@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>云南师范大学 · 移动GIS - 应用</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    #map{position:relative;width:100%;height:68vh;border-radius:1rem;overflow:hidden}
+  </style>
+</head>
+<body class="bg-slate-50 min-h-screen has-tabbar">
+  <div class="theme-strip"></div>
+  <nav class="tabbar">
+    <button data-tab="tab-map" class="tabbar-btn tab-active">地图</button>
+    <button data-tab="tab-collect" class="tabbar-btn">采集</button>
+    <button data-tab="tab-list" class="tabbar-btn">列表</button>
+    <button data-tab="tab-settings" class="tabbar-btn">设置</button>
+  </nav>
+  <header class="sticky top-0 z-30 bg-white/90 backdrop-blur border-b border-slate-200">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="text-lg font-bold text-slate-800">云南师范大学 · 移动GIS</div>
+      <div class="flex items-center gap-3">
+        <div class="text-sm text-slate-500" id="userInfo"></div>
+        <button id="btnLogout" class="btn-secondary">退出</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto p-4 space-y-4 pb-24">
+
+    <section id="tab-map" class="card p-3">
+      <div id="map"></div>
+      <div class="map-bottombar">
+        <button id="btnLocate" class="btn">定位</button>
+        <select id="basemapSelect" class="btn">
+          <option value="vec">矢量</option>
+          <option value="sat">影像</option>
+          <option value="road">路网</option>
+          <option value="custom">自定义</option>
+        </select>
+      </div>
+    </section>
+
+    <section id="tab-collect" class="card p-4 hidden">
+      <h2 class="font-semibold text-slate-800 mb-3">移动端数据采集</h2>
+      <form id="collectForm" class="space-y-3">
+        <div>
+          <label class="block text-sm text-slate-600 mb-1">名称</label>
+          <input id="f_name" class="w-full input" required placeholder="样本名称">
+        </div>
+        <div>
+          <label class="block text-sm text-slate-600 mb-1">类别</label>
+          <input id="f_category" class="w-full input" placeholder="类别">
+        </div>
+        <div>
+          <label class="block text-sm text-slate-600 mb-1">描述</label>
+          <textarea id="f_desc" class="w-full input" rows="3" placeholder="描述信息"></textarea>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-sm text-slate-600 mb-1">经度</label>
+            <input id="f_lon" class="w-full input" placeholder="点击地图或定位自动填入">
+          </div>
+          <div>
+            <label class="block text-sm text-slate-600 mb-1">纬度</label>
+            <input id="f_lat" class="w-full input" placeholder="点击地图或定位自动填入">
+          </div>
+        </div>
+        <div class="flex gap-2">
+          <button type="button" id="btnUseLocation" class="btn-secondary">使用当前位置</button>
+          <button class="btn-primary" type="submit">提交采集</button>
+        </div>
+      </form>
+      <p class="text-xs text-slate-500 mt-2">提示：在地图上点击可拾取经纬度</p>
+    </section>
+
+    <section id="tab-list" class="card p-0 hidden">
+      <div class="p-3 flex items-center gap-2">
+        <input id="q" class="input w-full" placeholder="按名称或类别搜索">
+        <button id="btnSearch" class="btn-secondary">搜索</button>
+      </div>
+      <div id="list" class="divide-y"></div>
+    </section>
+
+    <section id="tab-settings" class="card p-4 hidden">
+      <h2 class="font-semibold text-slate-800 mb-3">系统信息与自定义底图</h2>
+      <div class="text-sm text-slate-600 mb-4" id="sysInfo"></div>
+
+      <div class="space-y-3">
+        <div class="bg-slate-50 rounded-lg p-3">
+          <div class="font-semibold mb-2">添加自定义XYZ瓦片</div>
+          <div class="grid gap-2">
+            <input id="tile_name" class="input" placeholder="名称，如本地发布服务">
+            <input id="tile_url" class="input" placeholder="URL模板，如 https://server/tiles/{z}/{x}/{y}.png">
+            <div class="grid grid-cols-2 gap-2">
+              <input id="tile_min" class="input" type="number" min="0" max="22" value="0" placeholder="最小级别">
+              <input id="tile_max" class="input" type="number" min="0" max="22" value="20" placeholder="最大级别">
+            </div>
+            <div class="flex gap-2">
+              <button id="btnAddTile" class="btn-primary" type="button">添加</button>
+              <button id="btnReloadTiles" class="btn-secondary" type="button">刷新列表</button>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="font-semibold mb-2">已发布自定义底图</div>
+          <ul id="tileList" class="divide-y"></ul>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div class="theme-strip"></div>
+
+  <script src="https://webapi.amap.com/maps?v=2.0&key=799e95dce579ffb9204d25175d0131c2"></script>
+  <script src="/config.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

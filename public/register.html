@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>云南师范大学 · 移动GIS - 注册</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="bg-slate-50 min-h-screen flex flex-col">
+  <div class="theme-strip"></div>
+  <div class="w-full max-w-sm bg-white rounded-2xl shadow-lg p-6 mx-auto my-auto">
+    <div class="text-center mb-6">
+      <h1 class="text-2xl font-bold text-slate-800">云南师范大学 · 移动GIS</h1>
+      <p class="text-slate-500 text-sm">创建您的账号</p>
+    </div>
+    <form id="regForm" class="space-y-4">
+      <div>
+        <label class="block text-sm text-slate-600 mb-1">用户名</label>
+        <input id="r_username" type="text" class="w-full input" placeholder="请输入用户名" required>
+      </div>
+      <div>
+        <label class="block text-sm text-slate-600 mb-1">密码</label>
+        <input id="r_password" type="password" class="w-full input" placeholder="请输入密码" required>
+      </div>
+      <div>
+        <label class="block text-sm text-slate-600 mb-1">昵称（显示名，可选）</label>
+        <input id="r_display" type="text" class="w-full input" placeholder="例如：张三">
+      </div>
+      <div class="flex items-center justify-between">
+        <a href="/" class="text-sm link-primary">返回登录</a>
+        <button type="submit" class="btn-primary">注册</button>
+      </div>
+    </form>
+  </div>
+  <div class="theme-strip"></div>
+  <script src="/config.js"></script>
+  <script src="/js/register.js"></script>
+</body>
+</html>
